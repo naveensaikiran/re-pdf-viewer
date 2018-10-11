@@ -128,6 +128,9 @@ class Pdf extends Component {
   componentDidMount() {
     this.loadPDFDocument(this.props);
   }
+  componentDidUpdate(prevProps){
+    this.loadPDFDocument(prevProps);
+  }
 
   componentWillUnmount() {
     const { pdf } = this.state;
