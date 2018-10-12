@@ -1,7 +1,7 @@
 {
-  "name": "react-pdf-js-infinite",
-  "version": "1.2.0",
-  "description": "A React component to wrap PDF.js",
+  "name": "react-pdf-js-infinite-zoom",
+  "version": "1.9.0",
+  "description": "A React component to wrap PDF.js using react-pdf-js-infinite but with zoom allowed",
   "main": "./lib/index.js",
   "jsnext:main": "./src/index.js",
   "repository": {
@@ -24,17 +24,18 @@
     "pdf",
     "pdfjs"
   ],
-  "author": "Emanuele Barban (http://github.com/McRipper)",
+  "author": "Cesar Aguirre (https://github.com/caaguirreec)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/McRipper/react-pdf-js-infinite/issues"
+    "url": "https://github.com/caaguirreec/react-pdf-js-infinite/issues"
   },
-  "homepage": "https://github.com/McRipper/react-pdf-js-infinite",
+  "homepage": "https://github.com/caaguirreec/react-pdf-js-infinite",
   "peerDependencies": {
     "react": "^15.5.0 || ~0.14.0",
     "react-dom": "^15.5.0 || ~0.14.0"
   },
   "dependencies": {
+    "material-ui": "^0.20.2",
     "pdfjs-dist": "~1.8.0",
     "prop-types": "~15.5.0"
   },
@@ -64,7 +65,7 @@
     "rimraf": "2.6.1",
     "webpack": "3.1.0"
   },
-  "npmName": "react-pdf-js-infinite",
+  "npmName": "react-pdf-js-infinite-zoom",
   "npmFileMap": [
     {
       "files": [

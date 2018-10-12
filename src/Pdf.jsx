@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import PdfPage from './PdfPage';
 
 require('pdfjs-dist/build/pdf.combined');
@@ -14,7 +13,8 @@ const makeCancelable = (promise) => {
       hasCanceled ? reject({ pdf: val, isCanceled: true }) : resolve(val)
     ));
     promise.catch(error => (
-      hasCanceled ? reject({ isCanceled: true }) : reject(error)
+      hasCanceled ? reject
+      ({ isCanceled: true }) : reject(error)
     ));
   });
 
@@ -51,7 +51,7 @@ class Pdf extends Component {
   static defaultProps = {
     scale: 1.0,
   };
-
+ 
   static onDocumentError(err) {
     if (err.isCanceled && err.pdf) {
       err.pdf.destroy();
@@ -119,18 +119,18 @@ class Pdf extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { zoomValue : 1 };
     this.onGetPdfRaw = this.onGetPdfRaw.bind(this);
     this.onDocumentComplete = this.onDocumentComplete.bind(this);
     this.getDocument = this.getDocument.bind(this);
   }
 
+ 
+
   componentDidMount() {
     this.loadPDFDocument(this.props);
   }
-  componentDidUpdate(prevProps){
-    this.loadPDFDocument(prevProps);
-  }
+
 
   componentWillUnmount() {
     const { pdf } = this.state;
@@ -178,7 +178,16 @@ class Pdf extends Component {
       .catch(this.onDocumentError);
     return this.documentPromise;
   }
-
+  pdfZoomIn =()=>{
+    const {zoomValue } = this.state;
+    const a = zoomValue + 0.1;
+    this.setState({zoomValue:a});
+  }
+  pdfZoomOut =()=>{
+    const {zoomValue } = this.state;
+    const a = zoomValue - 0.1;
+    this.setState({zoomValue:a});
+  }
 
   loadByteArray(byteArray) {
     this.getDocument(byteArray);
@@ -215,12 +224,14 @@ class Pdf extends Component {
     if (this.state.pdf) {
       return (
         <div>
+          <button type="button" onClick={this.pdfZoomIn}>+</button>
+          <button type="button" onClick={this.pdfZoomOut}>-</button>
           {[...Array(this.state.pdf.numPages)].map((_, page) =>
             <PdfPage
               key={page}
               pdf={this.state.pdf}
               page={page + 1}
-              scale={this.props.scale}
+              scale={this.state.zoomValue}
               className={this.props.className}
             />,
           )}

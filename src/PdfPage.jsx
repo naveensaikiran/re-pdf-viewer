@@ -14,11 +14,14 @@ export default class PdfPage extends Component {
   componentDidMount() {
     this.props.pdf.getPage(this.props.page).then(this.renderPage);
   }
-
+  componentDidUpdate(){
+    this.props.pdf.getPage(this.props.page).then(this.renderPage);
+  }
   renderPage = (pdfPage) => {
     if (pdfPage) {
       const canvasContext = this.canvas.getContext('2d');
       const { scale, rotate } = this.props;
+      console.log('insidePDF scale', scale);
       const viewport = pdfPage.getViewport(scale, rotate);
       this.canvas.height = viewport.height;
       this.canvas.width = viewport.width;
