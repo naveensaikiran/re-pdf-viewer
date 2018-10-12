@@ -1,8 +1,8 @@
-# react-pdf-js-infinite
+# react-pdf-js-infinite-zoom
 ---
 [![npm version](https://badge.fury.io/js/react-pdf-js-infinite.svg)](https://badge.fury.io/js/react-pdf-js-infinite)
 
-`react-pdf-js-infinite` provides a component for rendering PDF documents using [PDF.js](http://mozilla.github.io/pdf.js/). Written for React 15 and ES2015 using the Airbnb style guide.
+`react-pdf-js-infinite-zoom` provides a component for rendering PDF documents using [PDF.js](http://mozilla.github.io/pdf.js/). Written for React 15 and ES2015 using the Airbnb style guide and two basic buttons for zoom in and zoom out.
 
 ---
 
