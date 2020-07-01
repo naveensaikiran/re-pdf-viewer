@@ -13,8 +13,7 @@ const makeCancelable = (promise) => {
       hasCanceled ? reject({ pdf: val, isCanceled: true }) : resolve(val)
     ));
     promise.catch(error => (
-      hasCanceled ? reject
-      ({ isCanceled: true }) : reject(error)
+      hasCanceled ? reject({ isCanceled: true }) : reject(error)
     ));
   });
 
@@ -46,12 +45,13 @@ class Pdf extends Component {
     onDocumentComplete: PropTypes.func,
     className: PropTypes.string,
     style: PropTypes.object,
+    onFocus: PropTypes.func,
   };
 
   static defaultProps = {
     scale: 1.0,
   };
- 
+
   static onDocumentError(err) {
     if (err.isCanceled && err.pdf) {
       err.pdf.destroy();
@@ -119,13 +119,12 @@ class Pdf extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { zoomValue : 1 };
+    this.state = { zoomValue: 1 };
     this.onGetPdfRaw = this.onGetPdfRaw.bind(this);
     this.onDocumentComplete = this.onDocumentComplete.bind(this);
     this.getDocument = this.getDocument.bind(this);
   }
 
- 
 
   componentDidMount() {
     this.loadPDFDocument(this.props);
@@ -178,15 +177,15 @@ class Pdf extends Component {
       .catch(this.onDocumentError);
     return this.documentPromise;
   }
-  pdfZoomIn =()=>{
-    const {zoomValue } = this.state;
+  pdfZoomIn =() => {
+    const { zoomValue } = this.state;
     const a = zoomValue + 0.1;
-    this.setState({zoomValue:a});
+    this.setState({ zoomValue: a });
   }
-  pdfZoomOut =()=>{
-    const {zoomValue } = this.state;
+  pdfZoomOut =() => {
+    const { zoomValue } = this.state;
     const a = zoomValue - 0.1;
-    this.setState({zoomValue:a});
+    this.setState({ zoomValue: a });
   }
 
   loadByteArray(byteArray) {
@@ -231,8 +230,9 @@ class Pdf extends Component {
               key={page}
               pdf={this.state.pdf}
               page={page + 1}
-              scale={this.state.zoomValue}
+              scale={this.props.scale}
               className={this.props.className}
+              onFocus={this.props.onFocus}
             />,
           )}
         </div>

@@ -9,19 +9,19 @@ export default class PdfPage extends Component {
     rotate: PropTypes.number,
     className: PropTypes.string,
     pdf: PropTypes.object,
+    onFocus: PropTypes.func,
   };
 
   componentDidMount() {
     this.props.pdf.getPage(this.props.page).then(this.renderPage);
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.props.pdf.getPage(this.props.page).then(this.renderPage);
   }
   renderPage = (pdfPage) => {
     if (pdfPage) {
       const canvasContext = this.canvas.getContext('2d');
       const { scale, rotate } = this.props;
-      console.log('insidePDF scale', scale);
       const viewport = pdfPage.getViewport(scale, rotate);
       this.canvas.height = viewport.height;
       this.canvas.width = viewport.width;
@@ -31,7 +31,7 @@ export default class PdfPage extends Component {
 
   render() {
     return (
-      <canvas ref={(canvas) => { this.canvas = canvas; }} className={this.props.className} />
+      <canvas ref={(canvas) => { this.canvas = canvas; }} className={this.props.className} dataIndex={this.props.page} onFocus={() => this.props.onFocus(this.props.page)} />
     );
   }
 
