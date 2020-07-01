@@ -1,5 +1,5 @@
 {
-  "name": "@naveesaikiran/react-pdf-js-infinite-zoom",
+  "name": "re-pdf-viewer",
   "version": "1.0.0",
   "description": "A React component to wrap PDF.js using react-pdf-js-infinite but with zoom allowed",
   "main": "./lib/index.js",
@@ -66,7 +66,7 @@
     "rimraf": "2.6.1",
     "webpack": "3.1.0"
   },
-  "npmName": "react-pdf-js-infinite-zoom",
+  "npmName": "re-pdf-viewer",
   "npmFileMap": [
     {
       "files": [
