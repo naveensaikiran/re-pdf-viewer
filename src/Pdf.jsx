@@ -222,7 +222,10 @@ class Pdf extends Component {
 
   render() {
     if (this.state.pdf) {
-      this.props.setPages(this.state.pdf.numPages);
+      setTimeout(() => {
+        this.props.setPages(this.state.pdf.numPages);
+      }, 0);
+
       return (
         <div>
           {[...Array(this.state.pdf.numPages)].map((_, page) =>
