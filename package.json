@@ -1,5 +1,5 @@
 {
-  "name": "react-pdf-js-infinite-zoom",
+  "name": "@naveensaikiran/react-pdf-js-infinite-zoom",
   "version": "1.9.0",
   "description": "A React component to wrap PDF.js using react-pdf-js-infinite but with zoom allowed",
   "main": "./lib/index.js",
@@ -37,7 +37,8 @@
   "dependencies": {
     "material-ui": "^0.20.2",
     "pdfjs-dist": "~1.8.0",
-    "prop-types": "~15.5.0"
+    "prop-types": "~15.5.0",
+    "react-intersection-observer": "^8.26.2"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",

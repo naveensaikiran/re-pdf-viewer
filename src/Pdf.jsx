@@ -45,7 +45,8 @@ class Pdf extends Component {
     onDocumentComplete: PropTypes.func,
     className: PropTypes.string,
     style: PropTypes.object,
-    onFocus: PropTypes.func,
+    setPage: PropTypes.func,
+    setPages: PropTypes.func,
   };
 
   static defaultProps = {
@@ -221,10 +222,9 @@ class Pdf extends Component {
 
   render() {
     if (this.state.pdf) {
+      this.props.setPages(this.state.pdf.numPages);
       return (
         <div>
-          <button type="button" onClick={this.pdfZoomIn}>+</button>
-          <button type="button" onClick={this.pdfZoomOut}>-</button>
           {[...Array(this.state.pdf.numPages)].map((_, page) =>
             <PdfPage
               key={page}
@@ -232,7 +232,7 @@ class Pdf extends Component {
               page={page + 1}
               scale={this.props.scale}
               className={this.props.className}
-              onFocus={this.props.onFocus}
+              setPage={this.props.setPage}
             />,
           )}
         </div>

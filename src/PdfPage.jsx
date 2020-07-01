@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { InView } from 'react-intersection-observer';
 
 export default class PdfPage extends Component {
 
@@ -9,7 +10,7 @@ export default class PdfPage extends Component {
     rotate: PropTypes.number,
     className: PropTypes.string,
     pdf: PropTypes.object,
-    onFocus: PropTypes.func,
+    setPage: PropTypes.func,
   };
 
   componentDidMount() {
@@ -31,7 +32,13 @@ export default class PdfPage extends Component {
 
   render() {
     return (
-      <canvas ref={(canvas) => { this.canvas = canvas; }} className={this.props.className} dataIndex={this.props.page} onFocus={() => this.props.onFocus(this.props.page)} />
+      <InView
+        as="div" onChange={(inView) => {
+          if (inView === true) { this.props.setPage(this.props.page); }
+        }} className={this.props.className}
+      >
+        <canvas ref={(canvas) => { this.canvas = canvas; }} />
+      </InView>
     );
   }
 
