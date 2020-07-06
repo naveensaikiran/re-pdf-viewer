@@ -1,30 +1,27 @@
-'use strict';
-var webpack = require('webpack');
-
-var reactExternal = {
+const reactExternal = {
   root: 'React',
   commonjs2: 'react',
   commonjs: 'react',
-  amd: 'react'
+  amd: 'react',
 };
 
 module.exports = {
   externals: {
-    'react': reactExternal
+    react: reactExternal,
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         use: 'babel-loader',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   output: {
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx'],
+  },
 };

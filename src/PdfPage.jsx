@@ -19,6 +19,14 @@ export default class PdfPage extends Component {
   componentDidUpdate() {
     this.props.pdf.getPage(this.props.page).then(this.renderPage);
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.scale === nextProps.scale) { return false; }
+    console.log('nextProps', nextProps);
+    console.log('nextState', nextState);
+    return true;
+  }
+
   renderPage = (pdfPage) => {
     if (pdfPage) {
       const canvasContext = this.canvas.getContext('2d');

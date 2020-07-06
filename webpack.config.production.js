@@ -1,18 +1,16 @@
-'use strict';
+const webpack = require('webpack');
+const baseConfig = require('./webpack.config.base');
 
-var webpack = require('webpack');
-var baseConfig = require('./webpack.config.base');
-
-var config = Object.create(baseConfig);
+const config = Object.create(baseConfig);
 config.plugins = [
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production')
+    'process.env.NODE_ENV': JSON.stringify('production'),
   }),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
-      warnings: false
-    }
-  })
+      warnings: false,
+    },
+  }),
 ];
 
 module.exports = config;

@@ -1,36 +1,56 @@
-# react-pdf-js-infinite-zoom
----
-[![npm version](https://badge.fury.io/js/react-pdf-js-infinite.svg)](https://badge.fury.io/js/react-pdf-js-infinite)
-
-`react-pdf-js-infinite-zoom` provides a component for rendering PDF documents using [PDF.js](http://mozilla.github.io/pdf.js/). Written for React 15 and ES2015 using the Airbnb style guide and two basic buttons for zoom in and zoom out.
+# re-pdf-viewer
 
 ---
 
-Usage
------
+[![npm version](https://badge.fury.io/js/re-pdf-viewer.svg)](https://badge.fury.io/js/re-pdf-viewer)
 
-Install with `npm install react-pdf-js-infinite`
+`re-pdf-viewer` provides a component for rendering PDF documents using [PDF.js](http://mozilla.github.io/pdf.js/). Control ZoomIn and ZoomOut and dynamically update page numbers on scroll
+
+---
+
+## Usage
+
+Install with `npm install re-pdf-viewer --save`
 
 Use in your app
 
 ```js
-import React from 'react';
-import PDF from 'react-pdf-js-infinite';
+import React, { useState } from "react";
+import Pdf from "re-pdf-viewer";
 
-export default class MyPdfViewer extends React.Component {
+const MultiPagePdf = () => {
+  const [scale, setScale] = useState(1);
+  const [page, setPage] = useState(1);
+  const [pages, setPages] = useState(0);
 
-  render() {
-    return (
+  const zoomIn = () => {
+    setScale(scale + 1);
+  };
+
+  const zoomOut = () => {
+    setScale(scale - 1);
+  };
+
+  return (
+    <div>
+      <button onClick={zoomIn}>ZOOM IN</button>
+      <button onClick={zoomOut}>ZOOM OUT</button>
       <div>
-        <PDF file="somefile.pdf" scale={1.5} />
+        Page - {page} / Pages - {pages}{" "}
       </div>
-    )
-  }
-}
+      <Pdf
+        file={file}
+        scale={scale}
+        setPages={(num) => setPages(num)}
+        setPage={(num) => setPage(num)}
+        loading={<div>Loading...</div>}
+      />
+    </div>
+  );
+};
 ```
-
 
 ## Credit
 
 This project is a fork of [react-pdf-js](https://github.com/mikecousins/react-pdf-js) which is a fork of [react-pdfjs](https://github.com/erikras/react-pdfjs) which itself was a port of [react-pdf](https://github.com/nnarhinen/react-pdf), so thank you to
-the original authours.
+the original authors.
